@@ -1,4 +1,4 @@
-import { Category } from '../../Problems';
+import { Category } from '../../utils/problems/__data__/Problems';
 
 interface ICategorySelect {
   onChange: (e: Category) => void;

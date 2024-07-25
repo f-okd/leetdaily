@@ -1,6 +1,6 @@
 import { test, expect } from 'vitest';
 import { ProblemEndpoint } from './ProblemEndpoint';
-import { Category, treeProblems } from './Problems';
+import { Category, treeProblems } from './__data__/Problems';
 
 test('Expect getRandomInteger function to return a random integer between specified params', () => {
   const p = new ProblemEndpoint();
