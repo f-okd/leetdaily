@@ -2,10 +2,14 @@
 import { useState } from 'react';
 import './App.css';
 import { ProblemEndpoint } from './ProblemEndpoint';
+import CategorySelect from './components/category/CategorySelect';
 import { Category } from './Problems';
+import Button from './components/button/Button';
+import Link from './components/link/Link';
 
 function App() {
   const [category, setCategory] = useState<Category>(Category.ALL);
+
   const open150 = async () => {
     const problemUrl = new ProblemEndpoint().getRandomProblem(category);
     chrome.tabs.create({ url: problemUrl });
@@ -16,30 +20,14 @@ function App() {
 
   return (
     <>
-      <h1>LeetDaily</h1>
-      <h2>Neetcode 150</h2>
+      <h1 data-testid={'title'}>LeetDaily</h1>
+      <h2 data-testid={'subheading'}>Neetcode 150</h2>
       <div className="card">
-        <section>
-          <p>Choose a category:</p>
-          <select
-            defaultValue={Category.ALL}
-            onChange={(e) => setCategory((e.currentTarget.value as Category) ?? Category.ALL)}
-          >
-            {Object.keys(Category).map((key) => (
-              <option value={Category[key as keyof typeof Category]}>
-                {key.replace(/_/g, ' ')}
-              </option>
-            ))}
-          </select>
-        </section>
+        <CategorySelect onChange={setCategory} />
         <br />
-        <section>
-          <button onClick={open150}>Go</button>
-        </section>
+        <Button onClick={open150}>Go</Button>
       </div>
-      <a onClick={openSourceCode} className="read-the-docs">
-        Source code
-      </a>
+      <Link onClick={openSourceCode}>Source code</Link>
     </>
   );
 }
