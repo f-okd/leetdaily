@@ -1,9 +1,9 @@
 // import { useState } from 'react';
 import { useState } from 'react';
 import './App.css';
-import { ProblemEndpoint } from './ProblemEndpoint';
+import { ProblemEndpoint } from './utils/problems/ProblemEndpoint';
 import CategorySelect from './components/category/CategorySelect';
-import { Category } from './Problems';
+import { Category } from './utils/problems/__data__/Problems';
 import Button from './components/button/Button';
 import Link from './components/link/Link';
 
