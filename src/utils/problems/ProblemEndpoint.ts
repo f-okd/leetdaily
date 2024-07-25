@@ -1,4 +1,4 @@
-import problems, { Category } from './__data__/Problems';
+import problems, { Category } from "./__data__/Problems";
 
 export class ProblemEndpoint {
   problems = problems;
