@@ -1,0 +1,9 @@
+echo "🚫⚠️👷🛑 Checking code format"
+
+npx lint-staged
+
+echo "🚫⚠️👷🛑 Running tests"
+
+npm test -- --run
+
+echo "🚀💎😎 Checks complete"
