@@ -9,13 +9,13 @@ Follow these steps to clone and run the project on your local machine:
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/f-okd/book-tracker
+   git clone https://github.com/f-okd/leetdaily
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd C:\...\book-tracker
+   cd C:\...\leetdaily
    ```
 
 3. Install dependencies:
@@ -34,8 +34,6 @@ Follow these steps to clone and run the project on your local machine:
    - Select your dist folder
    - You should be able to see the extension in your extensions tab
 
-You should be able to access the application at [http://localhost:5173](http://localhost:5173).
-
 ## How to Test
 
 Ensure the project functions as expected by following these steps:
@@ -45,7 +43,8 @@ Ensure the project functions as expected by following these steps:
    ```bash
     npm run test
    ```
-   To generate coverage reports, you can use:
+   Alternatively, one can generate coverage reports using:
+
    ```bash
    npm run test -- --coverage
    ```
