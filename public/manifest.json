@@ -5,7 +5,6 @@
   "action": {
     "default_popup": "index.html"
   },
-  "permissions": ["scripting"],
   "icons": {
     "32": "icon32.png"
   }
