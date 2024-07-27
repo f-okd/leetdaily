@@ -50,9 +50,3 @@ Ensure the project functions as expected by following these steps:
    ```
 
 ```
-
-# Todo:
-
-- testing
-- add difficulty filter
-```
