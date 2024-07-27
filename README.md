@@ -31,8 +31,10 @@ Follow these steps to clone and run the project on your local machine:
 5. Load the extension:
    - Navigate to `chrome://extensions/`
    - Click `load unpacked`
-   - Select your dist folder
+   - Drag `./dist` folder into the box 
    - You should be able to see the extension in your extensions tab
+  
+Every time you make a change to the code, make sure you rebuild locally then click reload extension on the extensions dashboard.
 
 ## How to Test
 
