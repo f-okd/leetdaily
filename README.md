@@ -48,5 +48,3 @@ Ensure the project functions as expected by following these steps:
    ```bash
    npm run test -- --coverage
    ```
-
-```
