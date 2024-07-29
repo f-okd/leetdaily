@@ -50,3 +50,14 @@ Ensure the project functions as expected by following these steps:
    ```bash
    npm run test -- --coverage
    ```
+
+## How to Contribute
+
+Contributions are welcome! Here's how you can help:
+(Please write tests)
+  
+1. Fork the repository
+2. Create a new branch for your feature or bug fix
+3. Make your changes
+4. Commit your changes and push to your fork
+5. Create a pull request
