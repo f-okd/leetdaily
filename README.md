@@ -57,7 +57,7 @@ Contributions are welcome! Here's how you can help:
 (Please write tests)
   
 1. Fork the repository
-2. Create a new branch for your feature or bug fix
+2. Create a new branch for your feature or bug fix (look through the github issues)
 3. Make your changes
 4. Commit your changes and push to your fork
 5. Create a pull request
