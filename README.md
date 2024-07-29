@@ -54,7 +54,8 @@ Ensure the project functions as expected by following these steps:
 ## How to Contribute
 
 Contributions are welcome! Here's how you can help:
-(Please write tests)
+
+- Please write tests and try to use [semantic commit messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
   
 1. Fork the repository
 2. Create a new branch for your feature or bug fix (look through the github issues)
