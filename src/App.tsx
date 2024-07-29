@@ -18,6 +18,10 @@ function App() {
     chrome.tabs.create({ url: "https://github.com/f-okd/leetdaily" });
   };
 
+  const openDailyChallange = async () => {
+    // do something
+  };
+
   return (
     <>
       <h1 data-testid={"title"}>LeetDaily</h1>
@@ -28,6 +32,7 @@ function App() {
         <Button onClick={open150}>Go</Button>
       </div>
       <Link onClick={openSourceCode}>Source code</Link>
+      <button onClick={openDailyChallange}>Today's daily challenge</button>
     </>
   );
 }
