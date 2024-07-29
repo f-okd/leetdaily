@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import { expect, test } from "vitest";
 import CategorySelect from "./CategorySelect";
-import { Category } from "../../utils/problems/__data__/Problems";
+import { Category } from "../../problems/__data__/Problems";
 
 test("Loads category select component with all categories listed", async () => {
   render(<CategorySelect onChange={() => {}} />);
