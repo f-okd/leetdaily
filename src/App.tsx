@@ -1,6 +1,6 @@
 // import { useState } from 'react';
 import { useState } from "react";
-import "./App.css";
+import "./styles/App.css";
 import { ProblemEndpoint } from "./problems/ProblemEndpoint";
 import CategorySelect from "./components/category/CategorySelect";
 import Button from "./components/button/Button";
