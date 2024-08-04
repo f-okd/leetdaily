@@ -2,9 +2,8 @@ import LeetCode from "leetcode-query";
 
 console.log("hey");
 chrome.runtime.onMessage.addListener(async (message, _sender, sendResponse) => {
-  // 2. A page requested user data, respond with a copy of `user`
   if (message === "getDailyChallenge") {
-    const res = getDailyChallenge();
+    const res = await getDailyChallenge();
     sendResponse(res);
   }
 });
