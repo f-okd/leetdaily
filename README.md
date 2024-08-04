@@ -66,3 +66,5 @@ Contributions are welcome! Here's how you can help:
 5. Create a pull request
 
 [This repository](https://github.com/akarsh1995/leetcode-graphql-queries) helped me work with the public Leetcode graphql API
+[This medium article](https://ajaynjain.medium.com/how-i-built-a-chrome-extension-with-react-and-vite-without-crxjs-plugin-b607194c4f5e) helped me configure the service-worker.
+You may also find them helpful when working with the project.

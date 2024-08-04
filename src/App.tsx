@@ -10,7 +10,6 @@ import { sendMessageToBackground } from "./chrome/chrome-utils";
 
 function App() {
   const [category, setCategory] = useState<Category>(Category.ALL);
-  const [testStr, setTestStr] = useState("testStr");
 
   const open150 = async () => {
     const problemUrl = new ProblemEndpoint().getRandomProblem(category);
@@ -22,8 +21,6 @@ function App() {
 
   const openDailyChallange = async () => {
     const response = await sendMessageToBackground<string>("getDailyChallenge");
-    console.log(response);
-    setTestStr(response);
     chrome.tabs.create({ url: response });
   };
 
@@ -38,8 +35,6 @@ function App() {
       </div>
       <Link onClick={openSourceCode}>Source code</Link>
       <button onClick={openDailyChallange}>Today's daily challenge</button>
-      <br />
-      <div>{testStr}</div>
     </>
   );
 }
