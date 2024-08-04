@@ -24,6 +24,7 @@ function App() {
     const response = await sendMessageToBackground<string>("getDailyChallenge");
     console.log(response);
     setTestStr(response);
+    chrome.tabs.create({ url: response });
   };
 
   return (
