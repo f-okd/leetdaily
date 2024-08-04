@@ -1,55 +1,25 @@
-const endpoint = "https://leetcode.com/graphql/";
-
-const query = `
-query questionOfToday {
-  activeDailyCodingChallengeQuestion {
-    date
-    userStatus
-    link
-    question {
-      acRate
-      difficulty
-      freqBar
-      frontendQuestionId: questionFrontendId
-      isFavor
-      paidOnly: isPaidOnly
-      status
-      title
-      titleSlug
-      hasVideoSolution
-      hasSolution
-      topicTags {
-        name
-        id
-        slug
-      }
-    }
-  }
-}
-`;
+import axios from "axios";
+import {
+  leetCodeGraphQlEndpoint as endpoint,
+  dailyChallengeGraphQlQuery as query,
+} from "./utils";
 
 export class LeetcodeEndpoint {
-  async getDailyChallenge(): Promise<string | undefined> {
-    let link = undefined;
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ query }),
-      });
+  async getDailyChallenge(): Promise<string> {
+    const headers = {
+      "Content-Type": "application/json",
+    };
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+    let link = "";
+    await axios
+      .post(endpoint, JSON.stringify({ query }), {
+        headers,
+      })
+      .then((res) => {
+        link = res.data.data.activeDailyCodingChallengeQuestion.link;
+      })
+      .catch((error) => console.log(error));
 
-      const data = await response.json();
-      link = data.data.activeDailyCodingChallengeQuestion.link;
-      console.log("Daily challenge link:", link);
-    } catch (error) {
-      console.error("Error fetching daily challenge:", error);
-    }
     return link;
   }
 }

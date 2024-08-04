@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import { useState } from "react";
 import "./styles/App.css";
 import { ProblemEndpoint } from "./problems/ProblemEndpoint";
@@ -31,10 +30,14 @@ function App() {
       <div className="card">
         <CategorySelect onChange={setCategory} />
         <br />
-        <Button onClick={open150}>Go</Button>
+        <Button id="search_button" onClick={open150}>
+          Go
+        </Button>
       </div>
       <Link onClick={openSourceCode}>Source code</Link>
-      <button onClick={openDailyChallange}>Today's daily challenge</button>
+      <Button id="daily_button" onClick={openDailyChallange}>
+        Today's daily challenge
+      </Button>
     </>
   );
 }

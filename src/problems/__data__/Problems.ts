@@ -1,9 +1,3 @@
-// interface IProblem {
-//   title: string;
-//   questionUrl: string;
-//   solutionUrl: string;
-// }
-
 export enum Category {
   ALL = "all",
   ARRAYS = "arrays",

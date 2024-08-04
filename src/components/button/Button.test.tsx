@@ -7,9 +7,13 @@ import Button from "./Button";
 test("Renders button, which calls the function passed as props when clicked", async () => {
   const mockFn = vi.fn();
 
-  render(<Button onClick={mockFn}>Go</Button>);
+  render(
+    <Button id="button" onClick={mockFn}>
+      Go
+    </Button>,
+  );
 
-  const button = screen.getByTestId("search_button");
+  const button = screen.getByTestId("button");
   expect(button).toBeInTheDocument();
 
   await userEvent.click(button);
