@@ -33,11 +33,13 @@ function App() {
         <Button id="search_button" onClick={open150}>
           Go
         </Button>
+        <br />
+        <br />
+        <Button id="daily_button" onClick={openDailyChallange}>
+          Today's daily challenge
+        </Button>
       </div>
       <Link onClick={openSourceCode}>Source code</Link>
-      <Button id="daily_button" onClick={openDailyChallange}>
-        Today's daily challenge
-      </Button>
     </>
   );
 }
