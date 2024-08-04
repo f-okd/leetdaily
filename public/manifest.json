@@ -8,5 +8,9 @@
   "icons": {
     "32": "icon32.png"
   },
+  "background": {
+    "service_worker": "assets/background.js",
+    "type": "module"
+  },
   "permissions": ["tabs"]
 }
