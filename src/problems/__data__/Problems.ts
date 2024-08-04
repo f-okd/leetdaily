@@ -93,7 +93,7 @@ export const treeProblems: string[] = [
   "https://leetcode.com/problems/count-good-nodes-in-binary-tree/",
   "https://leetcode.com/problems/validate-binary-search-tree/",
   "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",
-  "https://leetcode.com/problems/export construct-binary-tree-from-preorder-and-inorder-traversal/",
+  "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/",
   "https://leetcode.com/problems/binary-tree-maximum-path-sum/",
   "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/",
 ];
