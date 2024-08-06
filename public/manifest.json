@@ -12,6 +12,5 @@
     "service_worker": "assets/background.js",
     "type": "module"
   },
-  "permissions": ["tabs"],
   "host_permissions": ["https://*/*", "http://*/*"]
 }
