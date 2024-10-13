@@ -29,7 +29,7 @@ Follow these steps to clone and run the project on your local machine:
    npm run build
    ```
 5. Load the extension:
-   - Navigate to `chrome://extensions/`
+   - Navigate to `chrome://extensions/` in your chosen chromium browser
    - Click `load unpacked`
    - Drag `./dist` folder into the box
    - You should be able to see the extension in your extensions tab
