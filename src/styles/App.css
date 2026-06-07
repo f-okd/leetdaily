@@ -1,42 +1,385 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  padding: 24px 20px;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(124, 148, 115, 0.15) 0%,
+    transparent 65%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  margin-bottom: 8px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(124, 148, 115, 0.15) 0%,
+    rgba(124, 148, 115, 0.05) 100%
+  );
+  border: 1px solid rgba(124, 148, 115, 0.25);
+  box-shadow:
+    0 8px 20px rgba(124, 148, 115, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  margin-bottom: 12px;
+  transition: var(--transition);
+  position: relative;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logo-container::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 16px;
+  background: var(--primary);
+  z-index: -1;
+  opacity: 0;
+  filter: blur(8px);
+  transition: var(--transition);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.logo-container:hover {
+  transform: translateY(-2px) scale(1.05);
+  border-color: var(--primary);
+}
+
+.logo-container:hover::after {
+  opacity: 0.35;
+}
+
+.logo-svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--primary);
+  filter: drop-shadow(0 1px 2px rgba(124, 148, 115, 0.2));
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+h1.app-title {
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  font-weight: 800;
+  line-height: 1.2;
+  background: linear-gradient(
+    135deg,
+    var(--text-main) 40%,
+    var(--primary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background-color: var(--accent-yellow);
+  color: var(--accent-yellow-text);
+  border: 1px solid var(--accent-yellow-border);
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(124, 148, 115, 0.05);
+}
+
+.description {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 2px;
+  max-width: 260px;
+  line-height: 1.4;
 }
 
 .card {
-  padding: 2em;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin: 16px 0;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: var(--transition);
 }
 
-.read-the-docs {
-  color: #888;
+.card:hover {
+  border-color: rgba(124, 148, 115, 0.3);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Form Styles */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-label-icon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.8;
+  stroke: var(--primary);
+}
+
+.custom-dropdown-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.custom-dropdown-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  outline: none;
+  transition: var(--transition);
+  text-align: left;
+}
+
+.custom-dropdown-trigger:hover {
+  border-color: var(--primary);
+  background-color: #ffffff;
+}
+
+.custom-dropdown-trigger:focus-visible {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+.custom-dropdown-arrow {
+  color: var(--text-muted);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+}
+
+.custom-dropdown-arrow.open {
+  color: var(--primary);
+  transform: rotate(180deg);
+}
+
+.custom-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  max-height: 190px;
+  overflow-y: auto;
+  z-index: 100;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: dropIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-dropdown-item {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 10px 12px;
+  font-family: var(--font-primary);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-main);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  transition: var(--transition);
+}
+
+.custom-dropdown-item:hover {
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+.custom-dropdown-item.selected {
+  background-color: rgba(124, 148, 115, 0.1);
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.custom-dropdown-item-check {
+  width: 14px;
+  height: 14px;
+  color: var(--primary);
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-color) 20%,
+    var(--border-color) 80%,
+    transparent
+  );
+  margin: 4px 0;
+}
+
+/* Button Component Styles */
+.btn {
+  width: 100%;
+  border-radius: var(--radius-md);
+  padding: 12px 20px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: var(--transition);
+  outline: none;
+  border: 1px solid transparent;
+}
+
+.btn-icon {
+  width: 16px;
+  height: 16px;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--text-inverse);
+  box-shadow: 0 4px 12px rgba(124, 148, 115, 0.2);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 16px rgba(124, 148, 115, 0.3);
+}
+
+.btn-primary:hover .btn-icon {
+  transform: translateX(3px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(124, 148, 115, 0.2);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  border-color: var(--border-color);
+  color: var(--text-main);
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-hover);
+  border-color: rgba(124, 148, 115, 0.3);
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 12px rgba(124, 148, 115, 0.1);
+}
+
+.btn-secondary:hover .btn-icon {
+  transform: rotate(15deg) scale(1.05);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+/* Footer Link Styles */
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted) !important;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: rgba(124, 148, 115, 0.04);
+  border: 1px solid transparent;
+}
+
+.footer-link:hover {
+  color: var(--primary) !important;
+  background: rgba(124, 148, 115, 0.08);
+  border-color: rgba(124, 148, 115, 0.15);
+  transform: translateY(-1px);
+}
+
+.footer-link svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
 }
