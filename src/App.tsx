@@ -9,18 +9,46 @@ import { sendMessageToBackground } from "./chrome/chrome-utils";
 
 function App() {
   const [category, setCategory] = useState<Category>(Category.ALL);
+  const [useNeetCode, setUseNeetCode] = useState<boolean>(() => {
+    return localStorage.getItem("useNeetCode") === "true";
+  });
+
+  const handleToggle = (checked: boolean) => {
+    setUseNeetCode(checked);
+    localStorage.setItem("useNeetCode", String(checked));
+  };
+
+  const getDestinationUrl = (url: string): string => {
+    if (!useNeetCode) return url;
+    const match = url.match(/\/problems\/([^/]+)/);
+    if (match && match[1]) {
+      let slug = match[1];
+      if (slug === "reverse-linked-list") {
+        slug = "reverse-a-linked-list";
+      } else if (slug === "merge-two-sorted-lists") {
+        slug = "merge-two-sorted-linked-lists";
+      } else if (slug === "reorder-list") {
+        slug = "reorder-linked-list";
+      }
+      return `https://neetcode.io/problems/${slug}/question?list=neetcode150`;
+    }
+    return url;
+  };
 
   const open150 = async () => {
     const problemUrl = new ProblemEndpoint().getRandomProblem(category);
-    chrome.tabs.create({ url: problemUrl });
+    const finalUrl = getDestinationUrl(problemUrl);
+    chrome.tabs.create({ url: finalUrl });
   };
+
   const openSourceCode = async () => {
     chrome.tabs.create({ url: "https://github.com/f-okd/leetdaily" });
   };
 
   const openDailyChallange = async () => {
     const response = await sendMessageToBackground<string>("getDailyChallenge");
-    chrome.tabs.create({ url: response });
+    const finalUrl = getDestinationUrl(response);
+    chrome.tabs.create({ url: finalUrl });
   };
 
   return (
@@ -51,6 +79,33 @@ function App() {
 
       <div className="card">
         <CategorySelect onChange={setCategory} />
+
+        <div className="toggle-group">
+          <span className="toggle-label">
+            <svg
+              className="toggle-label-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            Solve on NeetCode
+          </span>
+          <label className="switch">
+            <input
+              type="checkbox"
+              data-testid="platform_toggle"
+              checked={useNeetCode}
+              onChange={(e) => handleToggle(e.target.checked)}
+            />
+            <span className="slider round"></span>
+          </label>
+        </div>
 
         <div className="divider"></div>
 

@@ -132,4 +132,30 @@ describe("App.tsx", () => {
       }),
     );
   });
+  test("should open problem in neetcode when neetcode platform toggle is checked", async () => {
+    const createTabMock = vi.fn();
+    vi.stubGlobal("chrome", {
+      tabs: {
+        create: createTabMock,
+      },
+    });
+
+    render(<App />);
+
+    const toggle = screen.getByTestId("platform_toggle");
+    await userEvent.click(toggle);
+
+    const button = screen.getByTestId("search_button");
+    await userEvent.click(button);
+
+    expect(createTabMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        url: expect.stringMatching(
+          /https:\/\/neetcode\.io\/problems\/.+\/question\?list=neetcode150/,
+        ),
+      }),
+    );
+
+    vi.unstubAllGlobals();
+  });
 });
