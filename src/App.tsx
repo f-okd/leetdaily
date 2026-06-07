@@ -35,10 +35,21 @@ function App() {
     return url;
   };
 
+  const openUrl = (url: string) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const activeTab = tabs[0];
+      if (activeTab && activeTab.id) {
+        chrome.tabs.update(activeTab.id, { url });
+      } else {
+        chrome.tabs.create({ url });
+      }
+    });
+  };
+
   const open150 = async () => {
     const problemUrl = new ProblemEndpoint().getRandomProblem(category);
     const finalUrl = getDestinationUrl(problemUrl);
-    chrome.tabs.create({ url: finalUrl });
+    openUrl(finalUrl);
   };
 
   const openSourceCode = async () => {
@@ -48,7 +59,7 @@ function App() {
   const openDailyChallange = async () => {
     const response = await sendMessageToBackground<string>("getDailyChallenge");
     const finalUrl = getDestinationUrl(response);
-    chrome.tabs.create({ url: finalUrl });
+    openUrl(finalUrl);
   };
 
   return (

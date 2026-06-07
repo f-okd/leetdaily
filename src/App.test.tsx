@@ -56,11 +56,16 @@ describe("App.tsx", () => {
     vi.unstubAllGlobals();
   });
 
-  test("chrome tab api should be called to open leetcode question in new tab when user clicks go", async () => {
-    const createTabMock = vi.fn();
+  test("chrome tab api should be called to open leetcode question in active tab when user clicks go", async () => {
+    const updateTabMock = vi.fn();
+    const queryTabsMock = vi.fn().mockImplementation((_queryInfo, callback) => {
+      callback([{ id: 123 }]);
+    });
     vi.stubGlobal("chrome", {
       tabs: {
-        create: createTabMock,
+        query: queryTabsMock,
+        update: updateTabMock,
+        create: vi.fn(),
       },
     });
 
@@ -69,7 +74,8 @@ describe("App.tsx", () => {
     const button = screen.getByTestId("search_button");
     await userEvent.click(button);
 
-    expect(createTabMock).toHaveBeenCalledWith(
+    expect(updateTabMock).toHaveBeenCalledWith(
+      123,
       expect.objectContaining({
         url: expect.stringContaining("https://leetcode.com/problems/"),
       }),
@@ -77,13 +83,16 @@ describe("App.tsx", () => {
 
     vi.unstubAllGlobals();
   });
-  test("chrome runtime api should be called to send message to service-worker when user clicks open daily", async () => {
-    const createTabMock = vi.fn();
-    const sendMessageMock = vi.fn();
 
+  test("chrome runtime api should be called to send message to service-worker when user clicks open daily", async () => {
+    const sendMessageMock = vi.fn();
     vi.stubGlobal("chrome", {
       tabs: {
-        create: createTabMock,
+        query: vi.fn().mockImplementation((_queryInfo, callback) => {
+          callback([{ id: 123 }]);
+        }),
+        update: vi.fn(),
+        create: vi.fn(),
       },
       runtime: {
         sendMessage: sendMessageMock,
@@ -99,16 +108,20 @@ describe("App.tsx", () => {
 
     vi.unstubAllGlobals();
   });
-  test("LeetcodeEndpoint class method + chrome tab api should be called when the user clicks the open daily button", async () => {
-    const createTabMock = vi.fn();
-    // Mock the sendResponse value from the listener in src\background\background.ts.
+  test("LeetcodeEndpoint class method + chrome tab api should be called to open daily in active tab when the user clicks the open daily button", async () => {
+    const updateTabMock = vi.fn();
+    const queryTabsMock = vi.fn().mockImplementation((_queryInfo, callback) => {
+      callback([{ id: 123 }]);
+    });
     const sendMessageMock = vi.fn().mockImplementation(() => {
       const lc = new LeetcodeEndpoint();
       return lc.getDailyChallenge();
     });
     vi.stubGlobal("chrome", {
       tabs: {
-        create: createTabMock,
+        query: queryTabsMock,
+        update: updateTabMock,
+        create: vi.fn(),
       },
       runtime: {
         sendMessage: sendMessageMock,
@@ -126,17 +139,23 @@ describe("App.tsx", () => {
     const button = screen.getByTestId("daily_button");
     await userEvent.click(button);
     expect(getDailyChallengeMethodSpy).toBeCalled();
-    expect(createTabMock).toHaveBeenCalledWith(
+    expect(updateTabMock).toHaveBeenCalledWith(
+      123,
       expect.objectContaining({
         url: "/problems/range-sum-of-sorted-subarray-sums/",
       }),
     );
   });
   test("should open problem in neetcode when neetcode platform toggle is checked", async () => {
-    const createTabMock = vi.fn();
+    const updateTabMock = vi.fn();
+    const queryTabsMock = vi.fn().mockImplementation((_queryInfo, callback) => {
+      callback([{ id: 123 }]);
+    });
     vi.stubGlobal("chrome", {
       tabs: {
-        create: createTabMock,
+        query: queryTabsMock,
+        update: updateTabMock,
+        create: vi.fn(),
       },
     });
 
@@ -148,7 +167,8 @@ describe("App.tsx", () => {
     const button = screen.getByTestId("search_button");
     await userEvent.click(button);
 
-    expect(createTabMock).toHaveBeenCalledWith(
+    expect(updateTabMock).toHaveBeenCalledWith(
+      123,
       expect.objectContaining({
         url: expect.stringMatching(
           /https:\/\/neetcode\.io\/problems\/.+\/question\?list=neetcode150/,
