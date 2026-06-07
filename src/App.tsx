@@ -47,8 +47,8 @@ function App() {
   };
 
   const open150 = async () => {
-    const problemUrl = new ProblemEndpoint().getRandomProblem(category);
-    const finalUrl = getDestinationUrl(problemUrl);
+    const problem = new ProblemEndpoint().getRandomProblem(category);
+    const finalUrl = useNeetCode ? problem.neetcode : problem.leetcode;
     openUrl(finalUrl);
   };
 

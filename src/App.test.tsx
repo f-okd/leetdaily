@@ -171,7 +171,7 @@ describe("App.tsx", () => {
       123,
       expect.objectContaining({
         url: expect.stringMatching(
-          /https:\/\/neetcode\.io\/problems\/.+\/question\?list=neetcode150/,
+          /https:\/\/neetcode\.io\/problems\/.+\/question/,
         ),
       }),
     );
